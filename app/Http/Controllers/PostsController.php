@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 
@@ -22,9 +21,13 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()
+                ->filter(request()->only(['month', 'year']))
+                ->get();
 
-        return view('posts.index', compact('posts'));
+        $archives =  Post::archives();
+
+        return view('posts.index', compact('posts', 'archives'));
     }
 
     /**
@@ -63,39 +66,5 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

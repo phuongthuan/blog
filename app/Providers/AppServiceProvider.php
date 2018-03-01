@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Post;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('layouts.sidebar', function ($view) {
+            $view->with('archives', Post::archives());
+        });
     }
 
     /**
@@ -26,6 +30,5 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
-        // ...
     }
 }
