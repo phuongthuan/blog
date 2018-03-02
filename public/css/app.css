@@ -9998,6 +9998,13 @@ a.text-dark:focus {
  * Globals
  */
 
+#flash-message {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
 @media (min-width: 48em) {
   html {
     font-size: 18px;

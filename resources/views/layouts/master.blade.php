@@ -2,6 +2,12 @@
 
 @include('layouts.nav')
 
+@if($flash = session('message'))
+    <div class="alert alert-success" id="flash-message" role="alert">
+        {{ $flash }}
+    </div>
+@endif
+
 <div class="blog-header">
     <div class="container">
         <h1 class="blog-title">My Blog</h1>

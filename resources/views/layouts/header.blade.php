@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Thuan Blog</title>
+    <title>ThuanBlog</title>
 
     <!-- Custom styles for this template -->
     <link href="/css/app.css" rel="stylesheet">
