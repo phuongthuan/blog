@@ -26,11 +26,11 @@ class Post extends Model
     }
 
     /**
-     * @param $body
+     * @param $comment
      */
-    public function addComment($body)
+    public function addComment($comment)
     {
-        $this->comments()->create(compact('body'));
+        $this->comments()->create($comment);
     }
 
 
