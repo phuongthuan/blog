@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>Thuan Blog</title>
 
     <!-- Custom styles for this template -->
     <link href="/css/app.css" rel="stylesheet">
