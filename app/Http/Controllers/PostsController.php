@@ -24,7 +24,7 @@ class PostsController extends Controller
 
         $posts = Post::latest()
                 ->filter(request()->only(['month', 'year']))
-                ->get();
+                ->paginate(5);
 
         $archives =  Post::archives();
 
