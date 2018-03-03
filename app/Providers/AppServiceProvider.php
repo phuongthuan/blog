@@ -19,8 +19,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layouts.sidebar', function ($view) {
             $archives = Post::archives();
             $tags = Tag::has('posts')->pluck('name');
+            $recents = Post::orderBy('created_at', 'desc')->take(5)->get();
 
-            $view->with(compact('archives', 'tags'));
+            $view->with(compact('archives', 'tags', 'recents'));
         });
     }
 

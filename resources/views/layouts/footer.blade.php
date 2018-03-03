@@ -1,7 +1,7 @@
 <footer class="blog-footer">
-    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    <p>ThuanBlog <a href="https://thuan.site"></a> by <a class="text-dark" href="https://thuannp95.github.io/myportfolio/">@thuannp</a>.</p>
     <p>
-        <a href="#">Back to top</a>
+        <a class="text-dark" href="#">Back to top</a>
     </p>
 </footer>
 
