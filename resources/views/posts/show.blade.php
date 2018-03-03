@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="col-sm-8 blog-main">
         <h1>{{ $post->title }}</h1>
 
         @if(count($post->tags))
@@ -16,6 +15,10 @@
             </ul>
         @endif
 
+        <p class="blog-post-meta">
+            {{ $post->created_at->toFormattedDateString() }} by
+            <a href="#"> {{ $post->user->name }}</a>
+        </p>
 
         {{ $post->body }}
 
@@ -27,7 +30,9 @@
                 <ul class="list-group">
                     @foreach($post->comments as $comment)
                         <li class="list-group-item">
-                            {{ $post->user->name }} : &nbsp;
+                            <b><a href="#" class="text-dark">
+                                    {{ $comment->user->name }}</a></b>
+                            : &nbsp;
                             {{ $comment->body }}
                             <strong>
                                 {{ $comment->created_at->diffForHumans() }}
@@ -51,12 +56,9 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Add Comment</button>
+                <button type="submit" class="btn btn-secondary">Add Comment</button>
             </div>
             @include('layouts.errors')
         </form>
-
-    </div>
-
 
 @endsection

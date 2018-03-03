@@ -24,11 +24,13 @@ class PostsController extends Controller
 
         $posts = Post::latest()
                 ->filter(request()->only(['month', 'year']))
-                ->paginate(5);
+                ->paginate(4);
+
+        $recents = Post::orderBy('created_at', 'desc')->take(5)->get();
 
         $archives =  Post::archives();
 
-        return view('posts.index', compact('posts', 'archives'));
+        return view('posts.index', compact('posts', 'archives', 'recents'));
     }
 
     /**
