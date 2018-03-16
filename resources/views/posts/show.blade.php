@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="col-sm-8 blog-main">
-        <h1>{{ $post->title }}</h1>
+
+        <h1 class="title">{{ $post->title }}</h1>
 
         @if(count($post->tags))
             <ul>
                 @foreach($post->tags as $tag)
-                    <li>
+                    <li class="tag is-rounded">
                         <a href="/posts/tags/{{  $tag->name}}">
                             {{ $tag->name }}
                         </a>
@@ -16,47 +16,63 @@
             </ul>
         @endif
 
+        <div class="content">
+            <p class="blog-post-meta">
+                {{ $post->created_at->toFormattedDateString() }} by
+                <a href="#"> {{ $post->user->name }}</a>
+            </p>
+            {{ $post->body }}
+        </div>
 
-        {{ $post->body }}
+        <br>
+
+        @foreach($comments as $comment)
+            @include('posts.comment')
+            <br>
+        @endforeach
+
+        {{ $comments->links() }}
 
 
-        @if(count($post->comments))
-            <hr>
 
-            <div class="comments">
-                <ul class="list-group">
-                    @foreach($post->comments as $comment)
-                        <li class="list-group-item">
-                            {{ $post->user->name }} : &nbsp;
-                            {{ $comment->body }}
-                            <strong>
-                                {{ $comment->created_at->diffForHumans() }}
-                            </strong>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
         {{-- Add a comment --}}
-        <hr>
+        <br>
 
         <form method="POST" action="/posts/{{ $post->id }}/comments">
-
             {{ csrf_field() }}
 
-            <div class="form-group">
-                <label for="comment">Comment</label>
-                <textarea class="form-control" name="body" placeholder="Your comment here.."></textarea>
-            </div>
+            <article class="media">
+                <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="/images/image3.jpg">
+                    </p>
+                </figure>
+                <div class="media-content">
+                    <div class="field">
+                        <p class="control">
+                            <textarea id="mybox" name="body" class="textarea" placeholder="Add a comment..."></textarea>
+                        </p>
+                    </div>
+                    <nav class="level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                <button type="submit" id="mybtn" class="button">Leave comment</button>
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <label class="checkbox">
+                                    <input type="checkbox"> Press enter to submit
+                                </label>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </article>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Add Comment</button>
-            </div>
             @include('layouts.errors')
+
         </form>
-
-    </div>
-
-
+        <br>
 @endsection

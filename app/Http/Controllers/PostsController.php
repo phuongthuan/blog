@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Channel;
 use App\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -13,22 +14,28 @@ class PostsController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
+     * @param Channel $channel
      * @return Response
      */
-    public function index()
+    public function index(Channel $channel)
     {
-
-        $posts = Post::latest()
+        if ($channel->exists) {
+            $posts = $channel->posts()->latest()->paginate(5);
+        }else {
+            $posts = Post::latest()
                 ->filter(request()->only(['month', 'year']))
                 ->paginate(5);
+        }
+
+        $recents = Post::orderBy('created_at', 'desc')->take(5)->get();
 
         $archives =  Post::archives();
 
-        return view('posts.index', compact('posts', 'archives'));
+        return view('posts.index', compact('posts', 'archives', 'recents'));
     }
 
     /**
@@ -63,11 +70,15 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Channel $channel
      * @param Post $post
      * @return Response
      */
-    public function show(Post $post)
+    public function show(Channel $channel, Post $post)
     {
-        return view('posts.show', compact('post'));
+        return view('posts.show', [
+            'post' => $post,
+            'comments' => $post->comments()->paginate(5),
+        ]);
     }
 }

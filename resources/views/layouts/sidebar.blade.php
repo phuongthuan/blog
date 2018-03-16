@@ -1,41 +1,57 @@
-<aside class="col-md-4 blog-sidebar">
-    <div class="p-3 mb-3 bg-light rounded">
-        <h4 class="font-italic">About</h4>
-        <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-    </div>
+<aside class="menu">
 
-    <div class="p-3">
-        <h4 class="font-italic">Archives</h4>
-        <ol class="list-unstyled mb-0">
-            @foreach($archives as $stats)
-                <li>
-                    <a href="/?month={{ $stats['month'] }}&year={{ $stats['year'] }}">
-                        {{ $stats['month'] . ' ' . $stats['year'] }}
-                    </a>
-                </li>
-            @endforeach
-        </ol>
-    </div>
+    <h4 class="font-weight-bold">
+        Recent Posts
+    </h4>
+    <ul class="list-unstyled mb-0">
+        @foreach($recents as $recent)
+            <li>
+                <a href="{{ $recent->path() }}">
+                    {{ $recent->title }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
 
-    <div class="p-3">
-        <h4>Tags</h4>
-        <ol class="list-unstyled">
-            @foreach($tags as $tag)
-                <li>
-                    <a href="/posts/tags/{{ $tag }}">
-                        {{ $tag }}
-                    </a>
-                </li>
-            @endforeach
-        </ol>
-    </div>
+    <br>
 
-    <div class="p-3">
-        <h4 class="font-italic">Elsewhere</h4>
-        <ol class="list-unstyled">
-            <li><a href="https://github.com/thuannp95">GitHub</a></li>
-            <li><a href="https://twitter.com/thuannp95">Twitter</a></li>
-            <li><a href="https://www.facebook.com/thuannp95">Facebook</a></li>
-        </ol>
-    </div>
-</aside><!-- /.blog-sidebar -->
+    <h4 class="font-weight-bold">
+        Archives
+    </h4>
+    <ul class="list-unstyled mb-0">
+        @foreach($archives as $stats)
+            <li>
+                <a href="/?month={{ $stats['month'] }}&year={{ $stats['year'] }}">
+                    {{ $stats['month'] . ' ' . $stats['year'] }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+
+    <br>
+
+    <h4 class="font-weight-bold">
+        Tags
+    </h4>
+    <ul class="list-unstyled">
+        @foreach($tags as $tag)
+            <li>
+                <a href="/posts/tags/{{ $tag }}">
+                    {{ $tag }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+
+    <br>
+
+    <h4 class="font-weight-bold">
+        Elsewhere
+    </h4>
+    <ul class="list-unstyled">
+        <li><a href="https://github.com/thuannp95">GitHub</a></li>
+        <li><a href="https://twitter.com/thuannp95">Twitter</a></li>
+        <li><a href="https://www.facebook.com/thuannp95">Facebook</a></li>
+    </ul>
+
+</aside>

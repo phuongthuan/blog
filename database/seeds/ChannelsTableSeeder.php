@@ -1,9 +1,9 @@
 <?php
 
-use App\User;
+use App\Channel;
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class ChannelsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 2)->create();
+        factory(Channel::class, 4)->create();
     }
 }
