@@ -26,7 +26,7 @@
             </div>
             <div class="field">
                 <p class="control">
-                    <button type="submit" class="button is-success">
+                    <button type="submit" id="mybtn" class="button is-success">
                         Login
                     </button>
                 </p>
