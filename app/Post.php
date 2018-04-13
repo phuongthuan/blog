@@ -56,7 +56,7 @@ class Post extends Model
      *
      * @return BelongsTo
      */
-    public function author() // $comment->post->author
+    public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
