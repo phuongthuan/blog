@@ -35,14 +35,14 @@ $factory->define(Post::class, function (Faker $faker) {
             return factory(Channel::class)->create()->id;
         },
         'title' => $faker->sentence,
-        'body' => $faker->paragraph,
+        'body' => $faker->paragraph
     ];
 });
 
 $factory->define(Channel::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
-        'slug' => $faker->word,
+        'slug' => $faker->unique()->slug(6)
     ];
 });
 

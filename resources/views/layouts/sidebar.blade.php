@@ -49,7 +49,7 @@
         Elsewhere
     </h4>
     <ul class="list-unstyled">
-        <li><a href="https://github.com/thuannp95">GitHub</a></li>
+        <li><a href="https://github.com/phuongthuan">GitHub</a></li>
         <li><a href="https://twitter.com/thuannp95">Twitter</a></li>
         <li><a href="https://www.facebook.com/thuannp95">Facebook</a></li>
     </ul>

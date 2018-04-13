@@ -9,8 +9,6 @@ use Tests\TestCase;
 
 class CreatePostsTest extends TestCase
 {
-    use RefreshDatabase;
-
     /** @test */
     public function an_authenticated_user_can_create_a_post()
     {

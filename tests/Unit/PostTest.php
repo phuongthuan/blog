@@ -6,12 +6,9 @@ use App\Post;
 use App\User;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PostTest extends TestCase
 {
-    use RefreshDatabase;
-
     protected $post;
 
     protected function setUp()
@@ -38,6 +35,4 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
         $this->assertEquals("/posts/{$post->channel->slug}/{$post->id}", $post->path());
     }
-
-
 }
