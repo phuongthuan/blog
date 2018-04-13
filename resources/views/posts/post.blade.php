@@ -4,7 +4,7 @@
     </h2>
     <p class="blog-post-meta">
         {{ $post->created_at->toFormattedDateString() }} by
-        <a href="#"> {{ $post->user->name }}</a>
+        <a href="#"> {{ $post->author->name }}</a>
     </p>
 
     {{ $post->body }}
