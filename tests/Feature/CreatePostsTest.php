@@ -22,4 +22,6 @@ class CreatePostsTest extends TestCase
             ->assertSee($post->title)
             ->assertSee($post->body);
     }
+
+
 }
