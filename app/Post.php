@@ -10,8 +10,19 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
 {
+    /**
+     * Get path of post.
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return "/posts/{$this->channel->slug}/{$this->id}";
+    }
 
     /**
+     * A post has many comments.
+     *
      * @return HasMany
      */
     public function comments()
@@ -20,6 +31,18 @@ class Post extends Model
     }
 
     /**
+     * Posts can belongs to a channel.
+     *
+     * @return BelongsTo
+     */
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }
+
+    /**
+     * A post belongs to many tags.
+     *
      * @return BelongsToMany
      */
     public function tags()
@@ -29,14 +52,19 @@ class Post extends Model
 
 
     /**
+     * Posts belongs to a author.
+     *
      * @return BelongsTo
      */
-    public function user() // $comment->post->user
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
+
     /**
+     * Add new comment.
+     *
      * @param $comment
      */
     public function addComment($comment)
@@ -44,8 +72,12 @@ class Post extends Model
         $this->comments()->create($comment);
     }
 
-
-
+    /**
+     * Filters posts by month and year.
+     *
+     * @param $query
+     * @param $filters
+     */
     public function scopeFilter($query, $filters)
     {
         if (isset($filters['month'])) {
@@ -57,6 +89,11 @@ class Post extends Model
         }
     }
 
+    /**
+     * Get archivies posts.
+     *
+     * @return mixed
+     */
     public static function archives()
     {
         return static::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')

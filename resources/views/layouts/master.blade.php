@@ -1,25 +1,22 @@
 @include('layouts.header')
 
+@include('layouts.nav')
+
 <div class="container">
-    @include('layouts.nav')
-</div>
 
+    <div class="columns">
 
-<main role="main" class="container">
-    <div class="row">
-        @include('layouts.slider')
-
-        <div class="col-md-8 blog-main">
-
+        <div class="column is-four-fifths">
             @yield('content')
+        </div>
 
-        </div><!-- /.blog-main -->
+        <div class="column">
+            @include('layouts.sidebar')
+        </div>
 
-        @include('layouts.sidebar')
+    </div><!-- /.columns -->
 
-    </div><!-- /.row -->
-
-</main><!-- /.container -->
+</div><!-- /.container -->
 
 @include('layouts.footer')
 
