@@ -24,6 +24,7 @@ class CorsMiddleware
         if (array_search($origin, $allow_domain)) {
             return $next($request)
                 ->header('Access-Control-Allow-Origin', $origin)
+                ->header('Access-Control-Allow-Headers', '*')
                 ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         }
         return $next($request);
